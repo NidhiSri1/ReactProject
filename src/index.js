@@ -3,11 +3,11 @@ const app = express();
 
 const connect = require("./config/db");
 
-app.listen(3100, async (res, rej) => {
+app.listen(2345, async () => {
     try {
-        console.log("Connected to 3100...");
-        connect();
+        await connect();
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
+    console.log("Connected to 3100...");
 });
