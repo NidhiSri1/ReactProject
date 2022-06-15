@@ -4,9 +4,17 @@ const app = express();
 const connect = require("./config/db");
 const { register, login } = require("./controllers/authControllers");
 const candiateControllers = require("../src/controllers/candiateList");
+const { body } = require("express-validator");
 app.use(express.json());
 
-app.post("/", register);
+app.post(
+    "/",
+    body("mobileNum").isLength({ min: 10 }),
+    body("password").isStrongPassword(),
+    // body("Email").isEmail,
+    register
+);
+
 app.post("/login", login);
 app.use("/candiate", candiateControllers);
 
