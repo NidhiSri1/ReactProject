@@ -51,9 +51,11 @@ route.delete("/:id", async (req, res) => {
 route.patch("/:id", async (req, res) => {
     const _id = req.params.id;
     try {
-        const patchCandidate = await Candidate.findOneAndUpdate(_id, req.body, {
-            new: true,
-        });
+        const patchCandidate = await Candidate.findOneAndUpdate(
+            _id,
+            req.body,
+            {}
+        );
         res.send(patchCandidate);
     } catch (err) {
         console.log(err);
